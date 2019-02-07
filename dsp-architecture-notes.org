@@ -1,0 +1,10 @@
+* lpm (longest path matrix) algorithm for finding iteration bound
+In signal processing systems, a DFG is used to represent an algorithm. Any DFG with a feedback loop will have a fundamental limit on how fast the underlying DSP program can be implemented in hardware. This limit is called the iteration bound of the algorithm.
+
+> Let 'd' be the number of delays in the DFG.
+
+> The matrices L(m), m = 1, 2, ... d are constructed such that: The value of the element l(m)_(i, j) is the longest computation time of all paths from delay element d_i to delay element d_j that pass through exactly m-1 delays (not including d_i and d_j.) If no such path exists, then l(m)_(i,j) = -1.
+
+> For example, to determine l(1)_(3,1) for some DFG, all paths from the delay element d3 to the delay element d1 that pass through exactly zero delay elements must be considered.
+
+> The higher order matrices, L(m), m = 2, 3, ... d, do not need to be determined directly from the DFG. Rather, they can be recursively computed according to the formula given on Page 48. We can of course graphically determine them as well.

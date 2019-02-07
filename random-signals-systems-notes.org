@@ -1,0 +1,212 @@
+\author{ishtar}
+\date{\today}
+\title{ESE 306}
+
+* lecture 1
+** set primer
+A set is a collection of objects called elements. We denote sets by capital letters and their elements with small letters.
+
+\begin{equation}
+
+A=\{a, b, c, d\}$
+
+B=\{0, 1\}$
+
+\end{equation}
+
+Thus
+
+\begin{equation}
+
+a \in A
+
+1 \in B
+
+z \not \in A
+
+2 \not \in B
+
+\end{equation}
+
+An empty set, or a null set, has no elements. This is a special set in set theory.
+
+\begin{equation}
+
+\varnothing=\{\}$
+
+\end{equation}
+
+** classification of sets
+We can classify all sets by the number of elements they contain.
+1. An empty set
+2. Sets with a finite number of elements (Finite set)
+*** 3. Sets with infinite but countable number of elements (Infinite & countable set)
+We can list the elements. A list is sequential, discrete. For example, N is composed of all nonnegative integers.
+\begin{equation}
+
+N=\{0,1,2,3,...\}$
+
+\end{equation}
+*** 4. Sets with infinite and uncountable number of elements (Infinite & uncountable set)
+We cannot list the elements of the set but have to describe them with an expression.
+Here, C contains all the points on the real line from zero to one.
+\begin{equation}
+
+C=\{w : w \in (0, 1)\}$
+
+\end{equation}
+*** other sets
+The universal set contains all objects under consideration in a given problem.
+Consider the transmission of the binary symbols "0" and "1" over a communication channel. The universal set of transmitted symbols is
+\begin{equation}
+
+\Omega=\{0,1\}$
+
+\end{equation}
+Another definition: If for any set A that we want to use we can write
+\begin{equation}
+
+A \subset \Omega
+
+\end{equation}
+Then we call \Omega the universal set.
+** set operations
+Visualization
+We can view the universal set as a great rectangle, like an environment. Then the sets form curved shapes within that environment, which may overlap with one another.
+*** Subset
+Set A is a subset of Set B if every element in A is present in B.
+\begin{equation}
+
+\omega \in A \implies \omega \in B
+
+A \subset B
+
+\end{equation}
+*** Complement
+The complement of A is all elements in the environment \Omega that are not in A.
+\begin{equation}
+
+A^c = \{\omega : \omega \not \in A \}
+
+\end{equation}
+Visually, it is the inverse of the shape.
+*** Union
+A union involves all the elements of two sets.
+\begin{equation}
+
+A \cup B = \{\omega : \omega \in A \lor \omega \in B\}$
+
+\end{equation}
+Visually, it is both shapes entirely.
+
+The union of \Omega with any set A is \Omega.
+*** Intersection
+\begin{equation}
+
+A \cap B = {\omega : \omega \in A \land \omega \in B}
+
+\end{equation}
+Visually, it is the overlap between shapes.
+
+Mutually exclusive sets:
+If 
+\begin{equation}
+
+A \cap B = \varnothing
+
+\end{equation}
+Then A and B are mutually exclusive sets. They have no intersection.
+
+The intersection of the empty set with any set A is an empty set.
+
+The intersection of \Omega with any set A is the set A.
+*** Difference
+\begin{equation}
+
+A - B = \{\omega : \omega \in A \land \omega \not \in B\}$
+
+\end{equation}
+Visually, it is a single shape with any overlaps with the other removed.
+*** Symmetric difference
+\begin{equation}
+
+A\DeltaB = \{\omega : \omega \in A \lor \omega \in B\ \text{but not both}\}
+
+\end{equation}
+Visually, it is the overlap removed.
+
+** basic set-theoretic operations
+Axioms for the algebra of sets. We start with union axioms.
+\begin{equation}
+
+1. \text{Commutation: } A \cup B = B \cup A
+
+2. \text{Association: } A \cup (B \cup C) = (A \cup B) \cup C
+
+3. \text{Distribution:} A \cup (B \cup C) = (A \cup B) \cup (A \cup C)
+
+4. \text{Complementation:} (A^{c})^{c} = A
+
+5. \text{Intersection of a set and its complement:} A \cap A^{c} = \varnothing
+
+6. \text{First DeMorgan's law:} (A \cap B)^{c} = A^{c} \cup B^{c}
+
+7. \text{Intersection of a set with the universal set:} A \cap \Omega = A
+
+\end{equation}
+We can prove other operations by extrapolation.
+** families of sets
+We can create sets of sets. We can index these sets to create indexed families of sets.
+
+For example, if A and B are sets, Z = {A, B} is also a set.
+
+Indexing works like this: B = {A\sub{1}, A\sub{2}, ...}
+
+For A\sub{i}, i is the index of the set and it is a member of the index set I.
+
+A collection of sets is called collectiely exhaustive if they cover the universal set.
+A collection of sets is called a partition if they are collectively exhaustive and do not overlap. Visually, this is like puzzle pieces, or shards of broken glass.
+The collection of all subsets of \Omega is called the power set of \Omega.
+* lecture 2
+** probability spaces
+A probability space is defined by three entities.
+\begin{equation}
+\text{probability space} = (\Omega, \mathbb{F}, \mathbb{P})
+\end{equation}
+
+** 1. Sample space \Omega
+A set of all the possible outcomes of an experiment.
+The sample space can be discrete or continuous or mixed (composed of discrete and continuous sets.)
+Ex. 1
+The outcomes of flippling a coin are heads h and tails t. Thus \Omega = {h, t}.
+This is a discrete, finite sample space.
+Ex. 2
+If we keep flipping a coin until the first head turns up and count the number of flips, then the sample space is countably infinite. Here \Omega = {1, 2, 3, ...}.
+This is a discrete, countably infinite sample space.
+Ex. 3
+If we measure the time to arrival of an email message that will be received within an hour, the sample space is uncountably infinite. Here \Omega = {t : t \in [0, 1]}.
+This is a continuous, uncountably infinite sample space.
+** 2. Event space \mathbb{F}
+Definition of Event:
+An event is a subset of the sample space \Omega.
+Like every set, \Omega is the subset of itself, so the sample space is also an event, and we call it the /certain event/.
+The empty set is an event too, and it is called the /impossible event/.
+
+However, not any subset of \Omega is an event.
+The event space is a collection of subsets of \Omega, where the collection of subsets must be a /field/, \mathbb{F}.
+
+"A field is a set on which addition, subtraction, multiplication, and division are defined, and behave as the corresponding operations on rational and real numbers do."
+
+Definition of Event Space:
+An event space of a sample space \Omega is a nonempty collection of subsets called events satisfying three properties.
+
+These three properties explicitly ensure that \mathbb{F} is closed under union and complementation. This means that no matter how much you complement any event, or union any two events together, the result will always be an element of the event space.
+
+This implies closure under intersection as well.
+
+In general, starting from a given set of subsets of \Omega, we can construct the smallest field \mathbb{F} that contains these subsets. With a random experiment, we can associate a pair (\Omega, \mathbb{F}), where \Omega is the sample space of the experiment, and \mathbb{F} is the event space constructed from events that we are interested in.
+
+The pair (\Omega, \mathbb{F}) is called a measurable space. This means we can assign a measure to the subsets from \mathbb{F}.
+** 3. Probability measure \mathbb{P}
+A probability measure \mathbb{P} on (\Omega, \mathbb{F}) is a function \mathbb{P}: F \rightarrow [0,1] that 
+

@@ -1,0 +1,107 @@
+* ch 1: computer system overview
+** general
+operating systems = making computing power available to users by controlling the hardware.
+basic elements
+>processor
+>main memory (real memory, primary memory) is volatile
+>I/O modules - secondary memory devices, communications equipment, terminals
+>system interconnection - communication among processors, memory, and I/O modules
+registers
+>constitute memory that is faster and smaller than main memory
+>temporarily stores data during processing
+top-level components (registers)
+IR: instruction register = most recently fetched instruction
+PC: program counter = address for next instruction
+MAR: memory address register = address for next read or write by CPU
+MBR: memory buffer register = CPU puts/receives data to be written/read to/from memory (exchange of data)
+I/OAR: I/O address register = specifies a particular I/O device
+I/OBR: I/O buffer = exchange of data between an I/O module and the processor
+** registers
+*** address registers: contain main memory address of data and instructions (like "XYZ" micro registers)
+may contain a portion of an address that is used to calculate the complete address, as in: index register, segment pointer, stack pointer
+**** index register
+involves adding an index to a base value to result in an address
+**** segment pointer
+when memory is divided into segments, memory is referenced by a segment and an offset
+**** stack pointer
+points to top of stack, does pre-increment and post-decrement
+*** user visible registers
+> may be referenced by machine language
+> available to all programs -- application programs and system programs
+> data registers: can be accessed by the programmer
+**** condition codes or flags
+bits set by the processor hardware as a result of operations
+can be accessed by a program but not changed
+for example: positive result, negative result, zero, overflow
+**** control & status registers
+program counter pc: contains the address of an instruction to be fetched
+instruction register ir: contains the instruction most recently fetched
+program status word psw: condition codes, interrupt enable/disable, supervisor (monitor) mode flag
+** instruction execution
+processor executes instructions in a program
+instructions are fetched from memory one at a time
+fetch - execute cycle
+> the processor fetches the instruction from memory
+> pc holds address of next instruction to be fetched
+> pc increments after each fetch
+instruction register
+> fetched instruction is placed here
+types of instructions
+> processor<->memory: transfer data between processor and memory
+> processor<->i/o: transfer data between processor and a peripheral device
+> data processing: arithmetic or logic operations on data
+> control flow: alter sequence of execution
+** interrupts
+an interruption of the normal processor execution
+improves processing efficiency
+allows the processor to execute other instructions while an I/O operation is in progress
+a suspension of a process caused by an event external to that process and performed in such a way that the process can be resumed (all is saved on stack)
+interrupts can be: program, timer, I/O, hardware failure
+interrupts add an extra branch to the instruction cycle
+*** program interrupts
+> arithmetic overflow
+> division by zero
+> execute illegal instruction
+> reference outside user's memory space
+> request for an OS service
+*** interrupt handler
+a program the determines the nature of the interrupt and performs respective actions
+control is transferred to this program, which is generally part of the operating system
+interrupt cycle:
+> processor checks for interrupts
+> if no interrupts, fetch the next instruction for the current program
+> if an interrupt is pending, suspend execution of the current program, and execute the interrupt handler 
+> (save psw & pc, save all volatile status & state registers on stack -- then restore after interrupt is processed)
+*** multiple interrupts in sequential order
+> disable interrupts so processor can complete task
+> interrupts remain pending until the processor enables interrupts
+> after interrupt handler routine completes, the processor checks for additional interrupts
+priorities of multiple interrupts
+> higher priority interrupts interrupt lower-priority interrupts
+** memory hierarchy
+going down the hierarchy, towards the bottom of the pyramid
+> decreasing cost per bit, more expendable
+> increasing capacity
+> increasing access time
+> decreasing frequency of access of the memory by the processor (principle of /locality of reference/)
+disk cache
+> a portion of main memory is used as a buffer to temporarily hold data for the disk
+> disk writes are clustered
+> some data written out may be referenced again. the data are retreived rapidly from the software cache instead of slowly, from disk
+** cache memory
+> invisible to operating system
+> used similarly to virtual memory (which is like a cache to main memory with diff. terminology and TLBs)
+> increases the speed of memory
+> processor speed is faster than memory speed
+cache memory contains an image of a portion of main memory. 
+in data accessing, processor first checks the cache. if not found, the block of memory containing the needed information is moved to the cache.
+cache/main-memory structure
+> memory is organized into blocks of k words, there is a "tag" in the cache which is address of the block + control bits
+cache design involves cache size
+> even small caches have significant impact on performance
+and block size
+> the unit of data exchanged bw cache<->main memory
+> a hit means the information was found in the cache, a miss means it was not
+> larger block size means more hits until probability of using newly fetched data becomes less than the probability of reusing data that has been moved out of cache
+> hit rate smile shape ^^
+
