@@ -105,3 +105,21 @@ and block size
 > larger block size means more hits until probability of using newly fetched data becomes less than the probability of reusing data that has been moved out of cache
 > hit rate smile shape ^^
 
+* ch 4: threads, smp, and microkernels
+** processes
+resource ownership -- a process is allocated a virtual address space to hold the process image
+dispatch -- a process is an execution path through one or more programs
+execution may be interleaved with other processes
+these two characteristics, resource ownership and dispatch -- are treated independently by the operating system.
+** dispatching is referred to as a thread
+** resource ownership is referred to as a process or task
+** an (modern) OS supports multiple threads of execution within a single process
+a thread is a path of execution through programs
+thread saves context when not running
+per-thread static storage for local variables
+all threads of a process share the resources/memory of the owner-process
+** single threaded and multithreaded process models
+** thread benefits
+less time to create a new thread than a process
+less time to terminate a thread than a process
+less time to switch between two threads within the same process

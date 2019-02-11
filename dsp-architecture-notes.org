@@ -1,5 +1,12 @@
+* sfg vs dfg
+two ways of representing an algorithm
+in an SFG, edges are functions and nodes hold data
+in a DFG, nodes are functions and edges are data paths
+in a DFG, any node can fire (perform its computation) whenever all the input data are available. this visualization captures the data-driven property of DSP algorithms.
 * lpm (longest path matrix) algorithm for finding iteration bound
 In signal processing systems, a DFG is used to represent an algorithm. Any DFG with a feedback loop will have a fundamental limit on how fast the underlying DSP program can be implemented in hardware. This limit is called the iteration bound of the algorithm.
+
+This limit is a characteristic of the DFG representation of the algorithm. If the representation changes, the limit will change respectively, even if the algorithm retains the same functionality.
 
 > Let 'd' be the number of delays in the DFG.
 
@@ -8,3 +15,80 @@ In signal processing systems, a DFG is used to represent an algorithm. Any DFG w
 > For example, to determine l(1)_(3,1) for some DFG, all paths from the delay element d3 to the delay element d1 that pass through exactly zero delay elements must be considered.
 
 > The higher order matrices, L(m), m = 2, 3, ... d, do not need to be determined directly from the DFG. Rather, they can be recursively computed according to the formula given on Page 48. We can of course graphically determine them as well.
+* mcm algorithm
+* pipelining / parallel processing
+main benefits: higher speed, lower power
+
+*pipelining*
+the pipelining transformation leads to a reduction in the critical path, which can be exploited to either increase the clock speed / sample speed, or to reduce power consumption at the same speed.
+
+pipelining reduces the effective critical path by introducing pipelining latches along the datapath -- splitting the dfg with cutsets to create a multi-level pipelined structure.
+
+*parallel processing*
+multiple outputs are computed in parallel in a clock period. the effective sampling speed is increased by the level of parallelism. like pipelining, parallel processing can be used to reduce power consumption.
+
+*pipelining attributes*
+in an M-level pipelined system, the number of delay elements in any path from input to output is (M-1) greater than that in the same path in the original sequential circuit. While pipelining reduces the critical path, it leads to a penalty of increase in /latency/. Latency is the difference in the availability of the first output data in the pipelined system and the sequential system by clock cycles. The two main drawbacks of pipelining are increase in the number of latches and in system latency.
+
+1. the speed of an architecture (or the clock/sample period) is limited by the longest path between any two latches or between an input and a latch or between a latch and an output or between the input and the output.
+
+2. this longest or "critical path" can be reduced by suitably placing the pipelining latches in the architecture.
+
+3. the pipelining latches can only be placed across any /feed-forward cutset/ of the graph.
+
+feed-forward cutset = a cutset (slice which makes the graph disjoint) where all data moves in the same direction. we can arbitrarily place latches on a feedforward cutset of any FIR filter structure without affecting the functionality of the algorithm.
+
+*data broadcast structure*
+reduces the critical path of FIR filter without introducing any latches.
+
+transposition theorem: Reversing the direction of all the edges in a given SFG and interchanging the input and output ports preserves the functionality of the system.
+
+in data-broadcast structure, data are not stored but broadcast to all multipliers simultaneously.
+
+*fine-grain pipelining*
+the computation nodes themselves are split into multiple steps with delays between them.
+
+*parallel processing*
+parallel processing and pipelining techniques are duals of each other -- if a computation can be pipelined, it can also be processed in parallel. both techniques exploit concurrency available in the computation in different ways. while independent sets of computations are computed in an interleaved manner in a pipelined system, they are computed using duplicate hardware in parallel processing mode.
+
+SISO 3-tap FIR filter:
+y(n) = ax(n) + bx(n-1) + cx(n-2)
+
+to obtain a parallel processing structure, a SISO (single-input-single-output) system must be converted into a MIMO (multi-input-multi-output) system. for example, the following set of equations describe a parallel system with 3 inputs per clock cycle (ie, level of parallel processing L = 3).
+
+y(3k) = ax(3k) + bx(3k-1) + cx(3k-2)
+y(3k+1) = ax(3k+1) + bx(3k) + cx(3k-1)
+y(3k+2) = ax(3k+2) + bx(3k+1) + cx(3k)
+
+with a delay,
+x(3k) -> x(3k-3)
+
+parallel processing systems are also called /block processing/ systems and the number of inputs processed in a clock cycle called the /block size/.
+
+MIMO structure -> placing a latch at any line produces an effective delay of L clock cycles at the sample rate. (L = level of parallel processing.)
+
+each delay element is called a /block delay/ or /L-slow/ and delays the signal by L clock cycles.
+
+the critical path of the block or parallel processing system remains unchanged, and the clock period T_clk must still satisfy:
+
+T_clk >= T_M + 2 T_A
+
+however, since /three/ samples are processed in one clock cycle, the iteration period is given by:
+
+T_iter = T_sample = T_clk / L = (T_M + 2 T_A) / 3
+
+*important to know*
+in a parallel system, T_clk =/= T_sample
+in a pipelined system, T_clk = T_sample
+
+we can have serial-to-parallel converters, and parallel-to-serial converters.
+
+*why use pipelined processing when we can use pipelining equally well?*
+why duplicate so many copies of the hw?
+
+the answer lies in the fact that there is a fundamental limit to pipelining imposed by the input/output bottlenecks.
+
+pipelining can be used only to the extent that the critical path computation time is limited by the communication or I/O bound (which is the bound of the output and input pads of the interfacing chips), and once this is reached, pipelining can no longer increase the speed. at this point, pipelining can be combined with parallel processing to further increase the speed of the architecture.
+
+and pipelining + parallel processing can indeed greatly increase sample/clock speed as well as lower power usage.
+
