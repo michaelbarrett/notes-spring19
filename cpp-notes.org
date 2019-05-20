@@ -1,4 +1,4 @@
-* Final 1 - Trees
+* Final 1 - AVL Trees
 ** A binary tree is either empty or has a node pointing to a left and right subtree.
 ** A binary search tree is a binary tree that is either empty or in which every node has a key, within its data entry, that satisfies:
 > The key of the root is greater than the key in any node in the root's left subtree.
@@ -114,9 +114,20 @@ class AVL_tree: public Search_tree<Record> {
 #+END_SRC
 
 AVL Insertion --
-> Follow the usual binary tree insertion algorithm. Compare the key of the new node with that in the root, an insert the new node into the left or right subtree as appropriate. 
+> Follow the usual binary tree insertion algorithm. Compare the key of the new node with that in the root, an insert the new node into the left or right subtree as appropriate.
+
+> Often, the new node can be inserted without changing subtree height. 
+
+> When height does change, it may be the shorter subtree that has grown, so only root balance factor changes. 
+
+> Difficulty occurs when the new node is added to a subtree of the root that is strictly taller than the other subtree, and the height is increased. Then, one subtree would have height 2 more than the other, violating AVL requirements. 
 
 ** AVL Tree Rotations
 Let's say a new node was inserted into the taller subtree of a root node and its height increased, so that now one subtree has height 2 more than the other, so the tree no longer satisfies AVL requirements. 
 
 We must now rebuild part of the tree to restore its balance. To be definite, let us assume we have inserted the new node into the right subtree, its height has increased, and the original tree was right higher.
+
+** AVL Tree reminders
+Beelzebub is standing completely alone in a huge empty room with a big motor, which is called the left-rotation motor. It works with the energies of holy-affirming, holy-denying, and holy-reconciliating (h, h, and h+1), which reposition themselves as the roots rotate by simple link-cutting.
+
+Then Hassein comes in with a smaller motor and Siamese twins come in behind him, one of whom is named Henry. This motor was given to him by Archangel Looisos and it works with three roots. In typical Luciferian fashion, it raises the lowest root to the highest spot and repositions the other two roots accordingly. Then the "h, <h or h-1, but one is h>, h" reposition themselves.
