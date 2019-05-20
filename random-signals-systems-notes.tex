@@ -1,10 +1,42 @@
+% Created 2019-02-10 Sun 21:46
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{heyoka}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={heyoka},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
 \author{ishtar}
 \date{\today}
 \title{ESE 306}
 \usepackage{amssymb}
 
-* lecture 1
-** set primer
+\section{lecture 1}
+\label{sec:org122297f}
+\subsection{set primer}
+\label{sec:org6c44997}
 A set is a collection of objects called elements. We denote sets by capital letters and their elements with small letters.
 
 \begin{equation}
@@ -37,18 +69,23 @@ An empty set, or a null set, has no elements. This is a special set in set theor
 
 \end{equation}
 
-** classification of sets
+\subsection{classification of sets}
+\label{sec:orga774430}
 We can classify all sets by the number of elements they contain.
-1. An empty set
-2. Sets with a finite number of elements (Finite set)
-*** 3. Sets with infinite but countable number of elements (Infinite & countable set)
+\begin{enumerate}
+\item An empty set
+\item Sets with a finite number of elements (Finite set)
+\end{enumerate}
+\subsubsection{3. Sets with infinite but countable number of elements (Infinite \& countable set)}
+\label{sec:org84e4329}
 We can list the elements. A list is sequential, discrete. For example, N is composed of all nonnegative integers.
 \begin{equation}
 
 N=\{0,1,2,3,...\}$
 
 \end{equation}
-*** 4. Sets with infinite and uncountable number of elements (Infinite & uncountable set)
+\subsubsection{4. Sets with infinite and uncountable number of elements (Infinite \& uncountable set)}
+\label{sec:org6d0707b}
 We cannot list the elements of the set but have to describe them with an expression.
 Here, C contains all the points on the real line from zero to one.
 \begin{equation}
@@ -56,7 +93,8 @@ Here, C contains all the points on the real line from zero to one.
 C=\{w : w \in (0, 1)\}$
 
 \end{equation}
-*** other sets
+\subsubsection{other sets}
+\label{sec:org8249052}
 The universal set contains all objects under consideration in a given problem.
 Consider the transmission of the binary symbols "0" and "1" over a communication channel. The universal set of transmitted symbols is
 \begin{equation}
@@ -70,11 +108,13 @@ Another definition: If for any set A that we want to use we can write
 A \subset \Omega
 
 \end{equation}
-Then we call \Omega the universal set.
-** set operations
+Then we call \(\Omega\) the universal set.
+\subsection{set operations}
+\label{sec:org8c874e2}
 Visualization
 We can view the universal set as a great rectangle, like an environment. Then the sets form curved shapes within that environment, which may overlap with one another.
-*** Subset
+\subsubsection{Subset}
+\label{sec:org8f8da19}
 Set A is a subset of Set B if every element in A is present in B.
 \begin{equation}
 
@@ -83,15 +123,17 @@ Set A is a subset of Set B if every element in A is present in B.
 A \subset B
 
 \end{equation}
-*** Complement
-The complement of A is all elements in the environment \Omega that are not in A.
+\subsubsection{Complement}
+\label{sec:org778f365}
+The complement of A is all elements in the environment \(\Omega\) that are not in A.
 \begin{equation}
 
 A^c = \{\omega : \omega \not \in A \}
 
 \end{equation}
 Visually, it is the inverse of the shape.
-*** Union
+\subsubsection{Union}
+\label{sec:orgc6f7078}
 A union involves all the elements of two sets.
 \begin{equation}
 
@@ -100,8 +142,9 @@ A \cup B = \{\omega : \omega \in A \lor \omega \in B\}$
 \end{equation}
 Visually, it is both shapes entirely.
 
-The union of \Omega with any set A is \Omega.
-*** Intersection
+The union of \(\Omega\) with any set A is \(\Omega\).
+\subsubsection{Intersection}
+\label{sec:orgd1e1d71}
 \begin{equation}
 
 A \cap B = {\omega : \omega \in A \land \omega \in B}
@@ -120,15 +163,17 @@ Then A and B are mutually exclusive sets. They have no intersection.
 
 The intersection of the empty set with any set A is an empty set.
 
-The intersection of \Omega with any set A is the set A.
-*** Difference
+The intersection of \(\Omega\) with any set A is the set A.
+\subsubsection{Difference}
+\label{sec:org96d5563}
 \begin{equation}
 
 A - B = \{\omega : \omega \in A \land \omega \not \in B\}$
 
 \end{equation}
 Visually, it is a single shape with any overlaps with the other removed.
-*** Symmetric difference
+\subsubsection{Symmetric difference}
+\label{sec:org2ab4090}
 \begin{equation}
 
 A\DeltaB = \{\omega : \omega \in A \lor \omega \in B\ \text{but not both}\}
@@ -136,7 +181,8 @@ A\DeltaB = \{\omega : \omega \in A \lor \omega \in B\ \text{but not both}\}
 \end{equation}
 Visually, it is the overlap removed.
 
-** basic set-theoretic operations
+\subsection{basic set-theoretic operations}
+\label{sec:org34ccd3c}
 Axioms for the algebra of sets. We start with union axioms.
 \begin{equation}
 
@@ -156,63 +202,71 @@ Axioms for the algebra of sets. We start with union axioms.
 
 \end{equation}
 We can prove other operations by extrapolation.
-** families of sets
+\subsection{families of sets}
+\label{sec:org2787b7d}
 We can create sets of sets. We can index these sets to create indexed families of sets.
 
-For example, if A and B are sets, Z = {A, B} is also a set.
+For example, if A and B are sets, Z = \{A, B\} is also a set.
 
-Indexing works like this: B = {A\sub{1}, A\sub{2}, ...}
+Indexing works like this: B = \{A\(\subset\)\{1\}, A\(\subset\)\{2\}, \ldots{}\}
 
-For A\sub{i}, i is the index of the set and it is a member of the index set I.
+For A\(\subset\)\{i\}, i is the index of the set and it is a member of the index set I.
 
 A collection of sets is called collectiely exhaustive if they cover the universal set.
 A collection of sets is called a partition if they are collectively exhaustive and do not overlap. Visually, this is like puzzle pieces, or shards of broken glass.
-The collection of all subsets of \Omega is called the power set of \Omega.
-* lecture 2
-** probability spaces
+The collection of all subsets of \(\Omega\) is called the power set of \(\Omega\).
+\section{lecture 2}
+\label{sec:orgf23e8e6}
+\subsection{probability spaces}
+\label{sec:org63a0dac}
 A probability space is defined by three entities.
 \begin{equation}
 \text{probability space} = (\Omega, \mathbb{F}, \mathbb{P})
 \end{equation}
 
-** 1. Sample space \Omega
+\subsection{1. Sample space \(\Omega\)}
+\label{sec:org916a53c}
 A set of all the possible outcomes of an experiment.
 The sample space can be discrete or continuous or mixed (composed of discrete and continuous sets.)
 Ex. 1
-The outcomes of flippling a coin are heads h and tails t. Thus \Omega = {h, t}.
+The outcomes of flippling a coin are heads h and tails t. Thus \(\Omega\) = \{h, t\}.
 This is a discrete, finite sample space.
 Ex. 2
-If we keep flipping a coin until the first head turns up and count the number of flips, then the sample space is countably infinite. Here \Omega = {1, 2, 3, ...}.
+If we keep flipping a coin until the first head turns up and count the number of flips, then the sample space is countably infinite. Here \(\Omega\) = \{1, 2, 3, \ldots{}\}.
 This is a discrete, countably infinite sample space.
 Ex. 3
-If we measure the time to arrival of an email message that will be received within an hour, the sample space is uncountably infinite. Here \Omega = {t : t \in [0, 1]}.
+If we measure the time to arrival of an email message that will be received within an hour, the sample space is uncountably infinite. Here \(\Omega\) = \{t : t \(\in\) [0, 1]\}.
 This is a continuous, uncountably infinite sample space.
-** 2. Event space \mathbb{F}
+\subsection{2. Event space \mathbb{F}}
+\label{sec:org2969bae}
 Definition of Event:
-An event is a subset of the sample space \Omega.
-Like every set, \Omega is the subset of itself, so the sample space is also an event, and we call it the /certain event/.
-The empty set is an event too, and it is called the /impossible event/.
+An event is a subset of the sample space \(\Omega\).
+Like every set, \(\Omega\) is the subset of itself, so the sample space is also an event, and we call it the \emph{certain event}.
+The empty set is an event too, and it is called the \emph{impossible event}.
 
-However, not any subset of \Omega is an event.
-The event space is a collection of subsets of \Omega, where the collection of subsets must be a /field/, \mathbb{F}.
+However, not any subset of \(\Omega\) is an event.
+The event space is a collection of subsets of \(\Omega\), where the collection of subsets must be a \emph{field}, \mathbb{F}.
 
 "A field is a set on which addition, subtraction, multiplication, and division are defined, and behave as the corresponding operations on rational and real numbers do."
 
 Definition of Event Space:
-An event space of a sample space \Omega is a nonempty collection of subsets called events satisfying three properties.
+An event space of a sample space \(\Omega\) is a nonempty collection of subsets called events satisfying three properties.
 
 These three properties explicitly ensure that \mathbb{F} is closed under union and complementation. This means that no matter how much you complement any event, or union any two events together, the result will always be an element of the event space.
 
 This implies closure under intersection as well.
 
-In general, starting from a given set of subsets of \Omega, we can construct the smallest field \mathbb{F} that contains these subsets. With a random experiment, we can associate a pair (\Omega, \mathbb{F}), where \Omega is the sample space of the experiment, and \mathbb{F} is the event space constructed from events that we are interested in.
+In general, starting from a given set of subsets of \(\Omega\), we can construct the smallest field \mathbb{F} that contains these subsets. With a random experiment, we can associate a pair (\(\Omega\), \mathbb{F}), where \(\Omega\) is the sample space of the experiment, and \mathbb{F} is the event space constructed from events that we are interested in.
 
-The pair (\Omega, \mathbb{F}) is called a measurable space. This means we can assign a measure to the subsets from \mathbb{F}.
-** 3. Probability measure \mathbb{P}
-A probability measure \mathbb{P} on (\Omega, \mathbb{F}) is a function \mathbb{P}: F \rightarrow [0,1] that maps an event to a probability from 0 -> 1.
+The pair (\(\Omega\), \mathbb{F}) is called a measurable space. This means we can assign a measure to the subsets from \mathbb{F}.
+\subsection{3. Probability measure \mathbb{P}}
+\label{sec:orga655d70}
+A probability measure \mathbb{P} on (\(\Omega\), \mathbb{F}) is a function \mathbb{P}: F \(\rightarrow\) [0,1] that maps an event to a probability from 0 -> 1.
 
-* lecture 3
-** conditional probabilities
+\section{lecture 3}
+\label{sec:orga99be75}
+\subsection{conditional probabilities}
+\label{sec:orge220067}
 definition
 the conditional probability of an event a given the occurence of another event b is denoted by \mathbb{P}(a|b) and is defined by
 
@@ -232,66 +286,18 @@ which implies that
 
 \end{equation}
 
-** law of total probability
-recall the definition of a partition of \omega.
+\subsection{law of total probability}
+\label{sec:orgfb85d5c}
+recall the definition of a partition of \(\omega\).
 
-> for a set of sets B_{n}
-> the unionation of all the sets = \omega
+> for a set of sets B\(_{\text{n}}\)
+> the unionation of all the sets = \(\omega\)
 > the piecewise intersection of all the sets = \varnothing
 
-*law of total probability*
+\textbf{law of total probability}
 \begin{equation}
 
 \mathbb{P}(A) = \displaystyle\sum_{n \in I}^{} \mathbb{P}(A|B_{n}) \mathbb{P}(B_{n})
 
 \end{equation}
-
-** event independence
-two events A and B are called independent if
-
-\begin{equation}
-\mathbb{P}(A \cap B) = \mathbb{P}(A) \mathbb{P}(B)
-\end{equation}
-
-if there are more events than just the two A and B, we must test pairwise individually.
-
-mutually exclusive events: that is, their intersection is null.
-they are independent only if at least one of them has probability equal to zero.
-* lecture 4
-** bayes' theorem (allows "flipping" of conditional probabilities)
-\begin{equation}
-
-\mathbb{P}(B_{n} | A) = \frac{\mathbb{P}(A|B_{n})\mathbb{P}(B_{n})}
-{\displaystyle\sum_{j \in I}^{} \mathbb{P}(A|B_{j}) \mathbb{P}(B_{j}) }
-
-\end{equation}
-
-if we know the probability of A assuming B, this allows us to find the probability of B assuming A.
-
-** product spaces
-the Cartesian product of two sample spaces \Omega_{1} and \Omega_{2} is a set whose elements are all ordered pairs \omega_{1}, \omega_{2} where \omega_{1} is an element of \Omega_{1} and \omega_{2} is an element of \Omega_{2}.
-
-we express this Cartesian product by
-
-\begin{equation}
-
-\Omega = \Omega_{1} * \Omega_{2}
-
-\end{equation}
-
-example: we flip two coins.
-\Omega_{1} = {h, t}
-\Omega_{2} = {h, t}
-Their Cartesian product is \Omega = {hh, ht, th, tt}.
-
-** permutations and combinations (ams 305 stuff)
-* lecture 5
-** types of random objects
-- random variables: the building blocks of random vectors & processes.
-- random vectors
-- random processes
-** random variables
-defn: A random variable assigns numbers to outcomes in the sample space of an experiment.
-
-A probability space {\Omega, F, P} consists of a sample space, and a rule for assigning numbers between 0->1 to sets in the event space F of \Omega. When we observe one of these assigned numbers, we refer to the observation as a random variable.
-
+\end{document}

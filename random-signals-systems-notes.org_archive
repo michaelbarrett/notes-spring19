@@ -1,0 +1,25 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/heyoka/19/spring19-notes/random-signals-systems-notes.org
+
+
+* law of total probability
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-10 Sun 21:39
+  :ARCHIVE_FILE: ~/19/spring19-notes/random-signals-systems-notes.org
+  :ARCHIVE_OLPATH: lecture 3
+  :ARCHIVE_CATEGORY: random-signals-systems-notes
+  :END:
+Recall the definition of a partition of \Omega.
+
+> For a set of sets B_n
+> The unionation of all the sets = \Omega
+> The piecewise intersection of all the sets = \varnothing
+
+*Law of total probability*
+\begin{equation}
+
+P(A) = \displaystyle\sum_{n=1}^{10} n^{2} (full format)
+
+\end{equation}

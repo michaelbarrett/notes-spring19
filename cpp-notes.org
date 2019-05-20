@@ -1,0 +1,72 @@
+* Final 1 - Trees
+** A binary tree is either empty or has a node pointing to a left and right subtree.
+** A binary search tree is a binary tree that is either empty or in which every node has a key, within its data entry, that satisfies:
+> The key of the root is greater than the key in any node in the root's left subtree.
+> The key of the root is less than the key in any node in the root's right subtree.
+> Subtrees are, again, binary search trees.
+--
+No two entries in a BST may have equal keys.
+We may study BSTs as a new implementation of the abstract data type /ordered list/.
+A binary search tree does not have to be balanced.
+
+#+NAME: BST class
+#+BEGIN_SRC C++
+
+template<class Record> //Records ~ keys that can be compared
+class Search_tree: public Binary_tree<Record> {
+  Error_code insert(const Record &new_data);
+  Error_code remove(const Record &old_data);
+  Error_code tree_search(Record &target) const;
+}
+
+//From general binary trees - constructors, destructor, clear, empty,
+//size, height, pre- / in- / post- order traversals
+
+#+END_SRC
+
+"int" is used for the Record class and for the Key class.
+
+** Search in a BST
+
+#+NAME: BST search
+#+BEGIN_SRC C++
+
+template<class Record>
+Binary_node<Record> *Search_tree<Record>::search_for_node(
+  Binary_node<Record> *sub_root, const Record &target) const {
+  if (sub_root == NULL || sub_root->data == target) return sub_root;
+  else if (sub_root->data < target) {
+    return search_for_node(sub_root->right, target);
+  }
+  else {
+    return search_for_node(sub_root->left, target);
+  }
+}
+
+//we can convert to iteration, as this is tail recursion
+
+template<class Record>
+Error_code Search_tree<Record>::tree_search(Record &target) const {
+  Error_code result = success;
+  Binary_node<Record> *found = search_for_node(root, target);
+  if (found == NULL) {
+    result = not_present;
+  }
+  else {
+    target = found->data;
+  }
+  return result;
+}
+
+//implements search_for_node
+
+#+END_SRC
+
+BST Insert -- done such that binary search tree properties are preserved, and success code returned. Different orders of insertion can easily result in different BSTs. 
+> If the keys to be inserted into an empty BST are in their natural order, then the method "insert" will produce a tree degenerating into an inefficient chain. The method "insert" should never be used with keys that are already sorted into order. Then, the tree will be inefficient (like one line).
+
+BST Removal -- 
+> Leaf: Replace the link to the removed node by null.
+> Node with just one nonempty subtree: Adjust the link from the parent of the removed node to point to the root of its nonempty subtree.
+*> Both left and right nonempty subtrees: 
+1. Find the immediate predecessor of the node under inorder traversal by moving to its left child and then as far right as possible. Replace the removed node with this node. No problem arises in removing it because it has no right subtree.
