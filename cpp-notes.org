@@ -70,3 +70,53 @@ BST Removal --
 > Node with just one nonempty subtree: Adjust the link from the parent of the removed node to point to the root of its nonempty subtree.
 *> Both left and right nonempty subtrees: 
 1. Find the immediate predecessor of the node under inorder traversal by moving to its left child and then as far right as possible. Replace the removed node with this node. No problem arises in removing it because it has no right subtree.
+** AVL Trees for Height Balance
+In many applications, insertions/removals occur continually, with no predictable order. So it's important to optimize search times by keeping the tree nigh balanced always.
+
+AVL trees achieve the goal that searches, insertions, and removals in a tree with n nodes can al be achieved in O(log n) time, because the height can never exceed O(log n). Thus even in the worst case, the behavior of an AVL tree could not be much below that of a random BST. In almost all cases, the actual length of a search is nigh log(n), and thus the behavior of AVL trees closely approximates that of the ideal, completely balanced BST.
+
+Completely Balanced = Left and Right subtrees have the same height.
+Balanced = Left and Right subtrees never differ by more than one.
+
+*AVL Tree Definition*
+An AVL tree is a binary search tree where the root's left and right subtree heights differ by at most 1, and where the left and right subtrees are again AVL trees.
+> With each node of an AVL tree is associated a /balance factor/ that is /left-higher/, /equal-height/, or /right-higher/ according, respectively, as the left subtree has height greater to, equal to, or less than that of the right subtree.
+-> Some AVL trees can be quite skewed, because the definition does not require that all leaves be on the same or adjacent levels. It only looks at the height of subtrees, not the fullness.
+
+#+NAME: AVL impl.
+#+BEGIN_SRC C++
+
+enum Balance_factor {left_higher, equal_height, right_higher };
+
+template <class Record>
+struct AVL_node: public Binary_node<Record> {
+  //additional data member
+  Balance_factor balance;
+
+  //ctors
+  AVL_node();
+  AVL_node(const Record &x);
+
+  //to examine and adjust the balance factor, as "left->get_balance()"
+  void set_balance(Balance_factor b);
+  Balance_factor get_balance() const;
+};
+
+//Actual AVL Tree
+template <class Record>
+class AVL_tree: public Search_tree<Record> {
+  public:
+    Error_code insert(const Record &new_data);
+    Error_code remove(const Record &old_data);
+  private: //add auxiliary function prototypes here
+}
+
+#+END_SRC
+
+AVL Insertion --
+> Follow the usual binary tree insertion algorithm. Compare the key of the new node with that in the root, an insert the new node into the left or right subtree as appropriate. 
+
+** AVL Tree Rotations
+Let's say a new node was inserted into the taller subtree of a root node and its height increased, so that now one subtree has height 2 more than the other, so the tree no longer satisfies AVL requirements. 
+
+We must now rebuild part of the tree to restore its balance. To be definite, let us assume we have inserted the new node into the right subtree, its height has increased, and the original tree was right higher.
