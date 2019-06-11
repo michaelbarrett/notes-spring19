@@ -131,3 +131,28 @@ We must now rebuild part of the tree to restore its balance. To be definite, let
 Beelzebub is standing completely alone in a huge empty room with a big motor, which is called the left-rotation motor. It works with the energies of holy-affirming, holy-denying, and holy-reconciliating (h, h, and h+1), which reposition themselves as the roots rotate by simple link-cutting.
 
 Then Hassein comes in with a smaller motor and Siamese twins come in behind him, one of whom is named Henry. This motor was given to him by Archangel Looisos and it works with three roots. In typical Luciferian fashion, it raises the lowest root to the highest spot and repositions the other two roots accordingly. Then the "h, <h or h-1, but one is h>, h" reposition themselves.
+* Final 2 - B Trees
+** A B-tree of order m is an m-way search tree in which
+- All leaves are on the same level.
+- All internal nodes except the root have at most m nonempty children, and at least [m/2] nonempty children.
+- The number of keys in each internal node is one less than the number of its nonempty children, and these keys partition the keys in the children in the fashion of a search tree.
+- The root has at most m children, but may have as few as 2 if it is not a leaf, or none if the tree consists of the root alone.
+** B-tree insertion
+B-trees cannot grow at their leaves. They must grow at the root.
+
+Insertion --
+> Search to see if the new key is in the tree, which terminates in failure at a leaf.
+> The new key is then added to the leaf node if it is not full.
+> If the leaf node is full, then split the node into two nodes site-by-side on the same lvel, and send the median key up the tree to be inserted into the parent node. On later searches therefore, a comparison with the median key will direct the search into the proper subtree.
+> When a key is added to a full root, the root splits in two and the median key sent upward becomes a new root. (this is how new levels arise)
+** B-tree reminders
+Beelzebub goes over to his Linux PC and opens GParted, where all the partitions look like Olympic ring logos. The Siamese twins point to the root, indicating two to m children. The rest of the nodes are satiated, saying "mmmmmmm", indicating [m/2] to m children.
+
+There are m downgoing morphisms (m for morphisms) and m-1 keys per node.
+
+* Final 3 - Orderings
+** DF Topol -- depth-first, that is, go all the way and revert putting into a stack (in-reverse)
+D - devil is in reverse
+** BF Topol -- a removal game, just go through and remove all w/out incoming (forward, virgin mary)
+select virgins
+B - virgin mary breasts
